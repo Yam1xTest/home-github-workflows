@@ -23,6 +23,10 @@ on:
       build-args:
         required: false
         type: string
+      # context is used to define the working director folder.
+      context:
+        required: false
+        type: string
 
 jobs:
   build_amd64:
@@ -63,6 +67,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
+          context: ${{ inputs.context && inputs.context || . }}
           platforms: linux/amd64
           labels: ${{ steps.meta.outputs.labels }}
           tags:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
@@ -121,6 +126,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
+          context: ${{ inputs.context && inputs.context || . }}
           platforms: linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
           tags:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
