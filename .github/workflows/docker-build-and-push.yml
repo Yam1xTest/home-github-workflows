@@ -60,7 +60,7 @@ jobs:
           echo "REPOSITORY_LOWER=$REPOSITORY_LOWER" >> $GITHUB_OUTPUT
       
       - name: print repo name
-        run: echo $REPOSITORY_LOWER
+        run: echo ${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
         
       # - name: Docker meta
       #   id: meta
