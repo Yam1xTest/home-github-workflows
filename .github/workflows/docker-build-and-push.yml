@@ -23,7 +23,7 @@ on:
       build-args:
         required: false
         type: string
-      # Context is used to define the working director folder.
+      # Context is used to define the working directory folder.
       context:
         required: false
         type: string
