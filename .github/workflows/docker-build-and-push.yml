@@ -27,7 +27,7 @@ on:
       context:
         required: false
         type: string
-      # Image-name is used to define the name of image in situation when you need to name that differ from project name
+      # Image-name is used to define the name of image in situation when you need to name it differ from project name
       image-name:
         required: false
         type: string
@@ -57,8 +57,8 @@ jobs:
 
       - name: Get lowercase repository
         id: get-lowercase-repository
+        # REPOSITORY_CUSTOM is needed to process with situations when repository name can't be image name
         run: |
-          
           REPOSITORY_CUSTOM=${{ inputs.image-name && format('{0}/{1}', github.repository_owner, inputs.image-name) || github.repository }}
           REPOSITORY_LOWER=$(echo "$REPOSITORY_CUSTOM" | tr '[:upper:]' '[:lower:]')
           echo "REPOSITORY_LOWER=$REPOSITORY_LOWER" >> $GITHUB_OUTPUT
