@@ -112,17 +112,15 @@ jobs:
         with:
           images:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
 
-      - run: |
-          docker build -t test:0.0.1 .
-      # - name: Build and push by digest
-      #   id: build
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     platforms: linux/arm64
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     tags:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
-      #     build-args: ${{ inputs.build-args }}
-      #     outputs: type=image,push-by-digest=true,name-canonical=true,push=true
+      - name: Build and push by digest
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/arm64
+          labels: ${{ steps.meta.outputs.labels }}
+          tags:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
+          build-args: ${{ inputs.build-args }}
+          outputs: type=image,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
         run: |
