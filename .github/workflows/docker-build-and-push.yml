@@ -111,7 +111,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images:  ghcr.io/${{ steps.get-lowercase-repository.outputs.REPOSITORY_LOWER }}
-
+      - run: ls
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
